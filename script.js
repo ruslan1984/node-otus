@@ -11,4 +11,17 @@ const three = (dir, depth = 2, curLevel = 0) => {
   });
 };
 
-three(process.cwd(), 2);
+let dir = process.cwd();
+let depth = 1;
+
+process.argv.forEach((item) => {
+  const arr = item.split("=");
+  if (arr[0] === "dir") {
+    dir = arr[1];
+  }
+  if (arr[0] === "depth") {
+    depth = Number(arr[1]);
+  }
+});
+
+three(dir, depth);
