@@ -2,11 +2,20 @@
   "name": "test",
   "version": "1.0.0",
   "description": "",
-  "main": "script copy.js",
+  "main": "script.js",
+  "type": "module",
+  "jest": {
+    "transform": {},
+    "verbose": true
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npx node script.js",
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest"
   },
   "author": "",
   "license": "ISC",
-  "type": "module"
+  "devDependencies": {
+    "jest": "^29.4.2",
+    "mock-fs": "^5.2.0"
+  }
 }
