@@ -10,7 +10,8 @@
   },
   "scripts": {
     "start": "npx node script.js",
-    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest"
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
+    "test-coverage": "NODE_OPTIONS=--experimental-vm-modules jest --coverage"
   },
   "author": "",
   "license": "ISC",
