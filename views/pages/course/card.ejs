@@ -1,0 +1,20 @@
+<%- include('../../head') %> <%- include('../../header') %>
+<body>
+  <div class="container">
+    <a href="/course/add">Добавить курс</a>
+    <h1>Курс <%= course.name %></h1>
+    <h4>Описание</h4>
+    <p><%= course.description %></p>
+    <div>
+      <h4>Видео</h4>
+      <%- course.video %>
+    </div>
+    <ul>
+      <li>Я</li>
+      <% course?.editors?.forEach((editor)=> { %>
+      <li><%=editor.name %></li>
+      <% }) %>
+    </ul>
+    <a href="/course/<%= course._id %>/edit">Редактировать курс</a>
+  </div>
+</body>

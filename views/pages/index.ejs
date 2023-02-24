@@ -1,0 +1,14 @@
+<%- include('../head') %> <%- include('../header') %>
+<body>
+  <div class="container">
+    <h1>Курсы</h1>
+    <ul>
+      <% courses.forEach((course)=> { %>
+      <li>
+        <h2><%= course.name %></h2>
+      </li>
+      <hr />
+      <% }) %>
+    </ul>
+  </div>
+</body>

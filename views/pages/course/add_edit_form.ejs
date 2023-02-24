@@ -1,0 +1,37 @@
+<div class="form-group mb-3">
+    <label for="exampleFormControlInput1">Название курса</label>
+    <input class="form-control" name="name" value="<%= (typeof course != 'undefined')?course.name:'' %>" />
+  </div>
+  <div class="form-group mb-3">
+    <label for="exampleFormControlInput1">Описание</label>
+    <textarea
+      class="form-control"
+      name="description"
+      cols="30"
+      rows="10"><%= (typeof course !== 'undefined')? course.description:"" %>
+  </textarea>
+  </div>
+  <div class="form-group mb-3">
+    <label for="exampleFormControlInput1">Видео iframe</label>
+    <textarea
+      class="form-control"
+      name="video"
+      cols="30"
+      rows="5"><%= (typeof course !== 'undefined')? course.video:"" %>
+  </textarea>
+  </div>
+  
+  <div class="form-group mb-3">
+    <label for="exampleFormControlInput1">Редакторы курса</label>
+    <select name="editors" class="form-select" multiple>
+      <% if(typeof users != 'undefined') users.forEach((user)=> { %>
+      <option <%=(((typeof course !== 'undefined')&& course.editors.includes(user._id)) ? "selected":"")%>
+        value="<%=user._id %>"><%= user.name %>
+      </option>
+      <% }) %>
+    </select>
+  </div>
+  <% if(typeof errors != 'undefined') errors.forEach((error)=> { %>
+  <div class="text-danger"><%= error.msg %></div>
+  <% }) %>
+  <button class="btn btn-primary" type="submit">Сохранить</button>

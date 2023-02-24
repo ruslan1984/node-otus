@@ -1,0 +1,29 @@
+<%- include('../../head') %> <%- include('../../header') %>
+<body>
+  <div class="container">
+    <h1>Курсы</h1>
+    <ul>
+      <% courses.forEach((course)=> { %>
+      <li class="d-flex justify-content-between">
+        <div>
+          <a href="/course/<%= course._id %>" ><%= course.name %></a> 
+          <div><%= course.createdAt %></div>
+        </div>
+        <% if (course.author==user )  {%>
+          <div>
+            <a href="/course/<%= course._id %>/edit" >Edit</a> 
+            <a class="text-danger" href="/course/<%= course._id %>/delete" >Del</a> 
+          </div>
+        <% } else if(course.editors.includes(user)) { %>
+          <div>
+            <a href="/course/<%= course._id %>/edit" >Edit</a> 
+          </div>
+        <% }%>
+      </h2>
+      </li>
+      <hr />
+      <% }) %>
+    </ul>
+    <a href="/course/add">Добавить курс</a>
+  </div>
+</body>
