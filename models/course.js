@@ -4,9 +4,9 @@ const CoursesSchema = new Schema(
   {
     id: Schema.ObjectId,
     name: String,
-    description: String,
-    author: Schema.ObjectId,
     video: String,
+    description: String,
+    author: { type: Schema.Types.ObjectId, ref: "users" },
     editors: [{ type: Schema.Types.ObjectId, ref: "users" }],
   },
   {

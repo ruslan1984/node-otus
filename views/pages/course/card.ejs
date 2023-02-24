@@ -1,5 +1,6 @@
-<%- include('../../head') %> <%- include('../../header') %>
+<%- include('../../head') %>
 <body>
+  <%- include('../../header') %>
   <div class="container">
     <a href="/course/add">Добавить курс</a>
     <h1>Курс <%= course.name %></h1>
@@ -17,4 +18,5 @@
     </ul>
     <a href="/course/<%= course._id %>/edit">Редактировать курс</a>
   </div>
+  <%- include('../../footer') %>
 </body>

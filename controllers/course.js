@@ -1,30 +1,35 @@
 import express from "express";
+import moment from "moment";
 import { body, validationResult } from "express-validator";
 import coursesModel from "../models/course.js";
 import usersModel from "../models/user.js";
 const router = express.Router();
 
 router.get("/", async function (req, res) {
-  const user = req.cookies.user;
-  const courses = await coursesModel.find();
-  res.render("pages/course/list", { courses, user });
+  const id = req.cookies.user;
+  const user = await usersModel.findById(id);
+  const courses = await coursesModel.find().populate("author");
+  res.render("pages/course/list", { courses, user, moment });
 });
 
 router.get("/add", async function (req, res) {
   const id = req.cookies.user;
+  const user = await usersModel.findById(id);
   const users = await usersModel.find({ $not: { _id: id } });
-  res.render("pages/course/add", { users });
+  res.render("pages/course/add", { users, user });
 });
 
 router.get("/my", async function (req, res) {
-  const user = req.cookies.user;
+  const userId = req.cookies.user;
+  const user = await usersModel.findById(userId);
   const courses = await coursesModel.find({ author: user });
-  res.render("pages/course/list", { courses, user });
+  res.render("pages/course/list", { courses, user, moment });
 });
 
 router.get("/:id/delete", async function (req, res) {
   const _id = req.params.id;
-  const user = req.cookies.user;
+  const userId = req.cookies.user;
+  const user = await usersModel.findById(userId);
   const courses = await coursesModel.deleteOne({ _id });
   res.render("pages/course/list", { courses, user });
 });
@@ -35,16 +40,20 @@ router.get("/list", async function (req, res) {
 });
 
 router.get("/:id", async function (req, res) {
+  const userId = req.cookies.user;
+  const user = await usersModel.findById(userId);
   const id = req.params.id;
   const course = await coursesModel.findById(id).populate("editors");
-  res.render("pages/course/card", { course });
+  res.render("pages/course/card", { course, user });
 });
 
 router.get("/:id/edit", async function (req, res) {
   const id = req.params.id;
+  const userId = req.cookies.user;
+  const user = await usersModel.findById(userId);
   const users = await usersModel.find({ $not: { _id: id } });
   const course = await coursesModel.findById(id);
-  res.render("pages/course/edit", { course, users });
+  res.render("pages/course/edit", { course, users, user });
 });
 router.post(
   "/:id/edit",
@@ -55,6 +64,8 @@ router.post(
     min: 5,
   }),
   async function (req, res) {
+    const userId = req.cookies.user;
+    const user = await usersModel.findById(userId);
     const id = req.params.id;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -71,7 +82,7 @@ router.post(
     });
     await course.save();
     const users = await usersModel.find({ $not: { _id: id } });
-    res.render("pages/course/edit", { course, users });
+    res.render("pages/course/edit", { course, users, user });
   }
 );
 
@@ -92,10 +103,6 @@ router.post(
       });
     }
 
-    const body = { ...req.body, author: req.cookies.user };
-    const course = await coursesModel.create(body, {
-      new: true,
-    });
     res.redirect("/");
   }
 );
