@@ -16,7 +16,7 @@ router.get("/add", async function (req, res) {
   const id = req.cookies.user;
   const user = await usersModel.findById(id);
   const users = await usersModel.find({ $not: { _id: id } });
-  res.render("pages/course/add", { users, user });
+  res.render("pages/course/card/add", { users, user });
 });
 
 router.get("/my", async function (req, res) {
@@ -44,7 +44,7 @@ router.get("/:id", async function (req, res) {
   const user = await usersModel.findById(userId);
   const id = req.params.id;
   const course = await coursesModel.findById(id).populate("editors");
-  res.render("pages/course/card", { course, user });
+  res.render("pages/course/card/card", { course, user });
 });
 
 router.get("/:id/edit", async function (req, res) {
@@ -53,7 +53,7 @@ router.get("/:id/edit", async function (req, res) {
   const user = await usersModel.findById(userId);
   const users = await usersModel.find({ $not: { _id: id } });
   const course = await coursesModel.findById(id);
-  res.render("pages/course/edit", { course, users, user });
+  res.render("pages/course/card/edit", { course, users, user });
 });
 router.post(
   "/:id/edit",
@@ -82,7 +82,7 @@ router.post(
     });
     await course.save();
     const users = await usersModel.find({ $not: { _id: id } });
-    res.render("pages/course/edit", { course, users, user });
+    res.render("pages/course/card/edit", { course, users, user });
   }
 );
 
@@ -97,7 +97,7 @@ router.post(
   async function (req, res) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.render("pages/course/add", {
+      return res.render("pages/course/card/add", {
         course: { ...req.body },
         errors: errors.array(),
       });
