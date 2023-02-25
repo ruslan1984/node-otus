@@ -3,6 +3,7 @@ import moment from "moment";
 import { body, validationResult } from "express-validator";
 import coursesModel from "../models/course.js";
 import usersModel from "../models/user.js";
+import commentModel from "../models/comment.js";
 const router = express.Router();
 
 router.get("/", async function (req, res) {
@@ -43,8 +44,15 @@ router.get("/:id", async function (req, res) {
   const userId = req.cookies.user;
   const user = await usersModel.findById(userId);
   const id = req.params.id;
-  const course = await coursesModel.findById(id).populate("editors");
-  res.render("pages/course/card/card", { course, user });
+  const course = await coursesModel
+    .findById(id)
+    .populate("editors")
+    .populate({
+      path: "comments",
+      populate: { path: "author", model: "users" },
+    });
+
+  res.render("pages/course/card/card", { course, user, moment });
 });
 
 router.get("/:id/edit", async function (req, res) {
@@ -102,14 +110,45 @@ router.post(
         errors: errors.array(),
       });
     }
-
     res.redirect("/");
   }
 );
 
+router.post("/:id/add_comment", async (req, res) => {
+  const courseId = req.params.id;
+  const userId = req.cookies.user;
+  const text = req.body.comment;
+
+  const data = {
+    text,
+    author: userId,
+  };
+
+  const user = await usersModel.findById(userId);
+  const course = await coursesModel
+    .findById(courseId)
+    .populate("editors")
+    .populate({
+      path: "comments",
+      populate: { path: "author", model: "users" },
+    });
+
+  const comment = new commentModel(data);
+  await comment.save();
+  course.comments = [...course.comments, comment._id];
+  await course.save();
+  res.render("pages/course/card/card", { course, user, moment });
+});
+
 router.get("/get/:id", async function (req, res) {
   const id = req.params.id;
-  const course = await coursesModel.findById(id);
+  const course = await coursesModel
+    .findById(id)
+    .populate("editors")
+    .populate({
+      path: "comments",
+      populate: { path: "author", model: "users" },
+    });
   res.json(course);
 });
 

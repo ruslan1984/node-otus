@@ -4,7 +4,6 @@ const CommentSchema = new Schema(
   {
     id: Schema.ObjectId,
     text: String,
-    course: Schema.ObjectId,
     author: { type: Schema.Types.ObjectId, ref: "users" },
   },
   {

@@ -8,6 +8,7 @@ const CoursesSchema = new Schema(
     description: String,
     author: { type: Schema.Types.ObjectId, ref: "users" },
     editors: [{ type: Schema.Types.ObjectId, ref: "users" }],
+    comments: [{ type: Schema.Types.ObjectId, ref: "comments" }],
   },
   {
     timestamps: true,

@@ -3,20 +3,48 @@
   <%- include('../../../header') %>
   <div class="container">
     <a href="/course/add">Добавить курс</a>
+    <a href="/course/<%= course._id %>/edit">Редактировать курс</a>
     <h1>Курс <%= course.name %></h1>
     <h4>Описание</h4>
     <p><%= course.description %></p>
-    <div>
-      <h4>Видео</h4>
-      <%- course.video %>
-    </div>
+    <% if(course.video){ %>
+    <h4>Видео</h4>
+    <%- course.video%> <%} %>
+
+    <h4>Редакторы</h4>
     <ul>
       <li>Я</li>
       <% course?.editors?.forEach((editor)=> { %>
       <li><%=editor.name %></li>
       <% }) %>
     </ul>
-    <a href="/course/<%= course._id %>/edit">Редактировать курс</a>
+    <hr />
+    <div>
+      <h4>Комментарии</h4>
+      <ul>
+        <% course?.comments?.forEach((comment)=> { %>
+        <li>
+          <div>
+            <%=comment.author.name %>
+            <span class="text-secondary"
+              ><%= moment(course.createdAt).format('DD.MM.YYYY') %>
+            </span>
+          </div>
+          <div><%=comment.text %></div>
+        </li>
+        <% }) %>
+      </ul>
+      <form action="/course/<%= course._id %>/add_comment" method="post">
+        <textarea
+          class="form-control mb-3"
+          name="comment"
+          cols="30"
+          rows="10"></textarea>
+        <button class="btn btn-primary" type="submit">
+          Добавить комментарий
+        </button>
+      </form>
+    </div>
   </div>
   <%- include('../../../footer') %>
 </body>
