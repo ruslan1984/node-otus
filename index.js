@@ -40,7 +40,9 @@ app.use(async (req, res, next) => {
 
 app.get("/", async (req, res) => {
   const courses = await coursesModel.find();
-  res.render("pages/index", { courses });
+  const id = req.cookies.user;
+  const user = await usersModel.findById(id);
+  res.render("pages/index", { courses, user });
 });
 app.get("/logout", async (req, res) => {
   res.clearCookie("user").redirect("/login");

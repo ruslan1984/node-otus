@@ -2,14 +2,14 @@
 <body>
   <%- include('../header') %>
   <div class="container">
-    <h1>Курсы</h1>
     <ul>
-      <% courses.forEach((course)=> { %>
+      <li><a href="/course" class="nav-link px-2">Курсы</a></li>
       <li>
-        <h2><%= course.name %></h2>
+        <a href="/course/my" class="nav-link px-2">Мои курсы</a>
       </li>
-      <hr />
-      <% }) %>
+      <li>
+        <a href="/course/add">Добавить курс</a>
+      </li>
     </ul>
   </div>
   <%- include('../footer') %>
