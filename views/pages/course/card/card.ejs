@@ -2,8 +2,15 @@
 <body>
   <%- include('../../../header') %>
   <div class="container">
-    <a href="/course/add">Добавить курс</a>
-    <a href="/course/<%= course._id %>/edit">Редактировать курс</a>
+    <div>
+      <a href="/course/add">Добавить курс</a>
+    </div>
+    <%if(isEditor) {%>
+    <div>
+      <a href="/course/<%= course._id %>/edit">Редактировать курс</a>
+    </div>
+    <%}%>
+
     <h1>Курс <%= course.name %></h1>
     <h4>Описание</h4>
     <p><%= course.description %></p>
