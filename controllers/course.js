@@ -129,4 +129,12 @@ router.post("/:id/add_comment", async (req, res) => {
   res.redirect("/course/" + courseId);
 });
 
+router.get("/:id/delete", async function (req, res) {
+  const _id = req.params.id;
+  const userId = req.cookies.user;
+  const user = await usersModel.findById(userId);
+  const courses = await coursesModel.deleteOne({ _id });
+  res.render("pages/course/list", { courses, user });
+});
+
 export default router;

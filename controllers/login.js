@@ -7,6 +7,7 @@ const router = express.Router();
 router.get("/", function (req, res) {
   res.render("pages/login", { errors: [] });
 });
+
 router.post("/", function (req, res) {
   const {
     body: { name, password },

@@ -1,9 +1,13 @@
 import express from "express";
 import mongoose from "mongoose";
+import userApiController from "./controllers/api/user.js";
 import userController from "./controllers/user.js";
 import courseController from "./controllers/course.js";
+import courseApiController from "./controllers/api/course.js";
 import loginController from "./controllers/login.js";
 import registerController from "./controllers/register.js";
+import loginApiController from "./controllers/api/login.js";
+import registerApiController from "./controllers/api/register.js";
 import bodyParser from "body-parser";
 import coursesModel from "./models/course.js";
 import cookieParser from "cookie-parser";
@@ -48,6 +52,10 @@ app.get("/logout", async (req, res) => {
   res.clearCookie("user").redirect("/login");
 });
 
+app.use("/api/course", courseApiController);
+app.use("/api/login", loginApiController);
+app.use("/api/register", registerApiController);
+app.use("/api/user", userApiController);
 app.use("/user", userController);
 app.use("/course", courseController);
 app.use("/login", loginController);
