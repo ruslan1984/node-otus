@@ -92,7 +92,7 @@ router.put(
   }
 );
 
-router.put("/:id/add_comment", async (req, res) => {
+router.post("/:id/add_comment", async (req, res) => {
   const courseId = req.params.id;
   const userId = req.cookies.user;
   const text = req.body.comment;
