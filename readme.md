@@ -55,11 +55,12 @@ DELETE **/api/user/:id** - удалить пользователя
 #### Поля
 
     name - название курса
-    video - видео курса
+    video - видео курса iframe
     description - описание курса
-    author - автор курса
-    editors - редакторы курса
+    author - ID автора курса
+    editors - массив ID редакторов курса
     comments - комментарии курса
+        text - текст комментария
 
 GET **/api/course** - все курсы
 
@@ -71,6 +72,6 @@ DELETE **/api/course/:id** - удалить курс
 
 POST **/api/course/add** - добавить курс
 
-PUT **/api/course/:id** - обн
-овить курс
+PUT **/api/course/:id** - обновить курс
+
 POST **/api/course/add_comment** - добавить комментарий
