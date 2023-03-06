@@ -1,0 +1,11 @@
+<%- include('../../../head') %>
+<body>
+  <%- include('../../../header') %>
+  <div class="container">
+    <h1>Редактирование курса</h1>
+    <form action="/course/<%=course._id %>/edit" method="POST">
+      <%- include('./add_edit_form') %>
+    </form>
+  </div>
+  <%- include('../../../footer') %>
+</body>
