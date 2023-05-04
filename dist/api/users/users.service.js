@@ -13,7 +13,7 @@ let UsersService = class UsersService {
         this.users = [
             {
                 userId: 1,
-                username: 'Ilya',
+                username: 'admin',
                 password: '123',
             },
             {

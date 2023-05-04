@@ -1,32 +1,37 @@
-import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-// import { ConfigModule, ConfigService } from '@nestjs/config';
-import { AppController } from './app.controller';
-// import { AuthController } from 'src/auth/auth.controller';
-import { PostsController } from 'src/api/posts/posts.controller';
-import { AppService } from './app.service';
-import { AuthModule } from './api/auth/auth.module';
-import { UsersModule } from './api/users/users.module';
-// import { LocalStrategy } from './auth/local.strategy';
-import Post from './api/posts/post.entity';
+import { Module } from "@nestjs/common";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { AuthModule } from "./api/auth/auth.module";
+import { UsersModule } from "./api/users/users.module";
+import { PostsResolver } from "./api/posts/posts.resolver";
+import { GraphQLModule } from "@nestjs/graphql";
+import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
+import { PostsService } from "src/api/posts/posts.service";
+import { PostEntity } from "src/api/posts/post.entity";
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
+      type: "postgres",
+      host: "localhost",
       port: 5432,
-      username: '',
-      password: '',
-      database: 'otus',
-      entities: [Post],
+      username: "",
+      password: "",
+      database: "otus",
+      entities: [PostEntity],
       synchronize: false,
     }),
-    TypeOrmModule.forFeature([Post]),
+
+    TypeOrmModule.forFeature([PostEntity]),
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      installSubscriptionHandlers: true,
+      autoSchemaFile: true,
+    }),
+
     AuthModule,
     UsersModule,
   ],
-  controllers: [AppController, PostsController],
-  providers: [AppService],
+  controllers: [],
+  providers: [PostsResolver, PostsService],
 })
 export class AppModule {}
