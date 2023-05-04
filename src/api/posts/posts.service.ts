@@ -1,21 +1,8 @@
-import { Injectable, Inject } from "@nestjs/common";
-import PostEntity from "./post.entity";
-import { PostModel } from "./post.model";
+import { Injectable } from "@nestjs/common";
+import { PostEntity } from "./post.entity";
 import { InjectRepository } from "@nestjs/typeorm";
 import { FindManyOptions, Repository } from "typeorm";
-import { ArgsType, Field } from "@nestjs/graphql";
-import { IsArray } from "class-validator";
-import {
-  Controller,
-  Get,
-  Param,
-  Body,
-  Post,
-  Delete,
-  Put,
-  UseGuards,
-} from "@nestjs/common";
-import { GetPostArgs } from "./args";
+import { UpdatePostInput, CreatePostInput } from "./args";
 
 @Injectable()
 export class PostsService {
@@ -35,5 +22,20 @@ export class PostsService {
       },
     };
     return await this.postsRepository.find(query);
+  }
+
+  async getPost(id: number) {
+    return await this.postsRepository.findOneBy({ id });
+  }
+  async update(id: number, post: UpdatePostInput) {
+    await this.postsRepository.update(id, post);
+    return await this.postsRepository.findOneBy({ id });
+  }
+  async create(post: CreatePostInput) {
+    return await this.postsRepository.save(post);
+  }
+  async delete(id: number) {
+    await this.postsRepository.delete({ id });
+    return { id: -1 };
   }
 }

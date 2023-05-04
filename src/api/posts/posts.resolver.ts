@@ -1,15 +1,37 @@
-import { Query, Resolver, Args } from "@nestjs/graphql";
-import { PostModel } from "./post.model";
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Query, Resolver, Args, Mutation } from "@nestjs/graphql";
+import { UseGuards } from "@nestjs/common";
+import { PostEntity } from "./post.entity";
 import { PostsService } from "./posts.service";
-import { GetPostArgs } from "./args";
+import { UpdatePostInput, CreatePostInput } from "./args";
 
-@Resolver((of) => PostModel)
+@Resolver((of) => PostEntity)
 export class PostsResolver {
   constructor(private readonly postsService: PostsService) {}
-
-  @Query(() => [PostModel], { name: "posts" })
-  getPosts3() {
+  @Query(() => [PostEntity], { name: "posts" })
+  getPosts() {
     return this.postsService.getPosts();
+  }
+
+  @Query(() => PostEntity, { name: "post" })
+  getPost(@Args("id") id: number) {
+    return this.postsService.getPost(id);
+  }
+
+  @Mutation(() => PostEntity, { name: "updatePost" })
+  updatePost(
+    @Args("id") id: number,
+    @Args("updatePostInput") updatePostInput: UpdatePostInput
+  ) {
+    return this.postsService.update(id, updatePostInput);
+  }
+
+  @Mutation(() => PostEntity, { name: "createPost" })
+  createPost(@Args("createPostInput") createPostInput: CreatePostInput) {
+    return this.postsService.create(createPostInput);
+  }
+
+  @Mutation(() => PostEntity, { name: "deletePost" })
+  deletePost(@Args("id") id: number) {
+    return this.postsService.delete(id);
   }
 }

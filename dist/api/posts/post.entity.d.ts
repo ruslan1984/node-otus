@@ -1,4 +1,4 @@
-export default class PostEntity {
+export declare class PostEntity {
     id: number;
     name: string;
     text: string;

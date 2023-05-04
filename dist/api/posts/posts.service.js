@@ -34,10 +34,24 @@ let PostsService = class PostsService {
         };
         return await this.postsRepository.find(query);
     }
+    async getPost(id) {
+        return await this.postsRepository.findOneBy({ id });
+    }
+    async update(id, post) {
+        await this.postsRepository.update(id, post);
+        return await this.postsRepository.findOneBy({ id });
+    }
+    async create(post) {
+        return await this.postsRepository.save(post);
+    }
+    async delete(id) {
+        await this.postsRepository.delete({ id });
+        return { id: -1 };
+    }
 };
 PostsService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_1.InjectRepository)(post_entity_1.default)),
+    __param(0, (0, typeorm_1.InjectRepository)(post_entity_1.PostEntity)),
     __metadata("design:paramtypes", [typeorm_2.Repository])
 ], PostsService);
 exports.PostsService = PostsService;
