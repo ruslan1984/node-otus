@@ -9,23 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const typeorm_1 = require("typeorm");
-let User = class User {
+exports.PostsResolver = void 0;
+const graphql_1 = require("@nestjs/graphql");
+const post_model_1 = require("./post.model");
+let PostsResolver = class PostsResolver {
+    sayHello() {
+        return "Hello !";
+    }
 };
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)('increment'),
-    __metadata("design:type", Number)
-], User.prototype, "id", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: 'character varying' }),
-    __metadata("design:type", String)
-], User.prototype, "name", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: 'character varying' }),
-    __metadata("design:type", String)
-], User.prototype, "text", void 0);
-User = __decorate([
-    (0, typeorm_1.Entity)('posts')
-], User);
-exports.default = User;
-//# sourceMappingURL=post.entity.js.map
+    (0, graphql_1.Query)(() => String),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", String)
+], PostsResolver.prototype, "sayHello", null);
+PostsResolver = __decorate([
+    (0, graphql_1.Resolver)((of) => post_model_1.Post)
+], PostsResolver);
+exports.PostsResolver = PostsResolver;
+//# sourceMappingURL=posts.resolver.js.map

@@ -1,4 +1,4 @@
-export default class User {
+export declare class Post {
     id: number;
     name: string;
     text: string;
