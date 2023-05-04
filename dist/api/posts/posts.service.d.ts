@@ -1,5 +1,6 @@
 import { Post } from "./post.model";
+import { GetPostArgs } from "./args";
 export declare class PostsService {
-    private users;
-    getUsers(getUsersArgs: any): Post[];
+    private posts;
+    getPosts(getUserPostsArgs: GetPostArgs): Post[];
 }

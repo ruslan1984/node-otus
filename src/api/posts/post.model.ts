@@ -4,15 +4,15 @@ import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 // @Entity("posts")
 @ObjectType()
 export class Post {
-  @PrimaryGeneratedColumn()
+  // @PrimaryGeneratedColumn()
   @Field(() => Int)
   id: number;
 
-  @Column()
+  // @Column()
   @Field({ nullable: false })
   name: string;
 
-  @Column()
+  // @Column()
   @Field({ nullable: false })
   text: string;
 }

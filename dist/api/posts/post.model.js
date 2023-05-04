@@ -11,21 +11,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Post = void 0;
 const graphql_1 = require("@nestjs/graphql");
-const typeorm_1 = require("typeorm");
 let Post = class Post {
 };
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)(),
     (0, graphql_1.Field)(() => graphql_1.Int),
     __metadata("design:type", Number)
 ], Post.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
     (0, graphql_1.Field)({ nullable: false }),
     __metadata("design:type", String)
 ], Post.prototype, "name", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
     (0, graphql_1.Field)({ nullable: false }),
     __metadata("design:type", String)
 ], Post.prototype, "text", void 0);

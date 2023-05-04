@@ -6,24 +6,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PostsService = void 0;
-const common_1 = require("@nestjs/common");
-let PostsService = class PostsService {
-    constructor() {
-        this.posts = [];
-    }
-    getPosts(getUserPostsArgs) {
-        return [
-            {
-                id: 2,
-                name: "text",
-                text: "123",
-            },
-        ];
-    }
+exports.GetPostArgs = void 0;
+const graphql_1 = require("@nestjs/graphql");
+let GetPostArgs = class GetPostArgs {
 };
-PostsService = __decorate([
-    (0, common_1.Injectable)()
-], PostsService);
-exports.PostsService = PostsService;
-//# sourceMappingURL=posts.service.js.map
+GetPostArgs = __decorate([
+    (0, graphql_1.ArgsType)()
+], GetPostArgs);
+exports.GetPostArgs = GetPostArgs;
+//# sourceMappingURL=args.js.map

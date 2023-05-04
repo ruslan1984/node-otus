@@ -9,10 +9,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
-const auth_module_1 = require("./api/auth/auth.module");
 const posts_resolver_1 = require("./api/posts/posts.resolver");
 const graphql_1 = require("@nestjs/graphql");
 const apollo_1 = require("@nestjs/apollo");
+const posts_service_1 = require("./api/posts/posts.service");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -32,10 +32,9 @@ AppModule = __decorate([
                 installSubscriptionHandlers: true,
                 autoSchemaFile: true,
             }),
-            auth_module_1.AuthModule,
         ],
         controllers: [],
-        providers: [posts_resolver_1.PostsResolver],
+        providers: [posts_resolver_1.PostsResolver, posts_service_1.PostsService],
     })
 ], AppModule);
 exports.AppModule = AppModule;
