@@ -9,29 +9,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PostModel = void 0;
-const graphql_1 = require("@nestjs/graphql");
 const typeorm_1 = require("typeorm");
-let PostModel = class PostModel {
+let PostEntity = class PostEntity {
 };
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)(),
-    (0, graphql_1.Field)(() => graphql_1.Int),
+    (0, typeorm_1.PrimaryGeneratedColumn)("increment"),
     __metadata("design:type", Number)
-], PostModel.prototype, "id", void 0);
+], PostEntity.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
-    (0, graphql_1.Field)({ nullable: false }),
+    (0, typeorm_1.Column)({ type: "character varying" }),
     __metadata("design:type", String)
-], PostModel.prototype, "name", void 0);
+], PostEntity.prototype, "name", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
-    (0, graphql_1.Field)({ nullable: false }),
+    (0, typeorm_1.Column)({ type: "character varying" }),
     __metadata("design:type", String)
-], PostModel.prototype, "text", void 0);
-PostModel = __decorate([
-    (0, typeorm_1.Entity)("posts"),
-    (0, graphql_1.ObjectType)()
-], PostModel);
-exports.PostModel = PostModel;
-//# sourceMappingURL=post.model.js.map
+], PostEntity.prototype, "text", void 0);
+PostEntity = __decorate([
+    (0, typeorm_1.Entity)("posts")
+], PostEntity);
+exports.default = PostEntity;
+//# sourceMappingURL=post.entity.js.map

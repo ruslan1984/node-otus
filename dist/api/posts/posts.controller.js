@@ -12,16 +12,16 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PostsService = void 0;
+exports.PostsController = void 0;
 const common_1 = require("@nestjs/common");
-const post_entity_1 = require("./post.entity");
 const typeorm_1 = require("@nestjs/typeorm");
+const post_entity_1 = require("./post.entity");
 const typeorm_2 = require("typeorm");
-let PostsService = class PostsService {
+let PostsController = class PostsController {
     constructor(postsRepository) {
         this.postsRepository = postsRepository;
     }
-    async getPosts() {
+    getAll() {
         const query = {
             select: {
                 name: true,
@@ -32,13 +32,19 @@ let PostsService = class PostsService {
                 name: "DESC",
             },
         };
-        return await this.postsRepository.find(query);
+        return this.postsRepository.find(query);
     }
 };
-PostsService = __decorate([
-    (0, common_1.Injectable)(),
+__decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], PostsController.prototype, "getAll", null);
+PostsController = __decorate([
+    (0, common_1.Controller)("posts"),
     __param(0, (0, typeorm_1.InjectRepository)(post_entity_1.default)),
     __metadata("design:paramtypes", [typeorm_2.Repository])
-], PostsService);
-exports.PostsService = PostsService;
-//# sourceMappingURL=posts.service.js.map
+], PostsController);
+exports.PostsController = PostsController;
+//# sourceMappingURL=posts.controller.js.map

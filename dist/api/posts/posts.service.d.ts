@@ -1,6 +1,7 @@
-import { Post } from "./post.model";
-import { GetPostArgs } from "./args";
+import PostEntity from "./post.entity";
+import { Repository } from "typeorm";
 export declare class PostsService {
-    private posts;
-    getPosts(getUserPostsArgs: GetPostArgs): Post[];
+    private readonly postsRepository;
+    constructor(postsRepository: Repository<PostEntity>);
+    getPosts(): Promise<PostEntity[]>;
 }

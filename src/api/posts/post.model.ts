@@ -1,18 +1,18 @@
 import { ObjectType, Field, Int } from "@nestjs/graphql";
 import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
-// @Entity("posts")
+@Entity("posts")
 @ObjectType()
-export class Post {
-  // @PrimaryGeneratedColumn()
+export class PostModel {
+  @PrimaryGeneratedColumn()
   @Field(() => Int)
   id: number;
 
-  // @Column()
+  @Column()
   @Field({ nullable: false })
   name: string;
 
-  // @Column()
+  @Column()
   @Field({ nullable: false })
   text: string;
 }
