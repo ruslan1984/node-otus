@@ -4,6 +4,6 @@ import { Controller, Get, Request } from '@nestjs/common';
 export class AppController {
   @Get("/")
   getProfile() {
-    return "Hello";
+    return "Hello!";
   }
 }
