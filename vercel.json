@@ -8,6 +8,7 @@
     ],
     "routes":[{
         "src": "./(.*)",
+        "dist": "src/main.ts",
         "methods": [
             "GET",
             "POST",
