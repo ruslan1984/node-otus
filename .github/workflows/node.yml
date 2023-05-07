@@ -1,0 +1,23 @@
+name: Otus Node.js CI/CD
+
+on:
+  push:
+    branches: ["hw_9"]
+  pull_request:
+    branches: ["hw_9"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.x"
+      - run: npm ci
+      - run: npm run format
+      - run: npm run lint
+      - run: npm run build --if-present
+      - run: npm test
