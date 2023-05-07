@@ -7,3 +7,7 @@
 проверяется Prettier, Linter, Тесты
 
 
+## CD
+
+Деплоится на vercrl https://node-otus.vercel.app/
+
