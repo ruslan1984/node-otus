@@ -16,6 +16,7 @@ const graphql_1 = require("@nestjs/graphql");
 const apollo_1 = require("@nestjs/apollo");
 const posts_service_1 = require("./api/posts/posts.service");
 const post_entity_1 = require("./api/posts/post.entity");
+const app_controller_1 = require("./app.controller");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -40,7 +41,7 @@ AppModule = __decorate([
             auth_module_1.AuthModule,
             users_module_1.UsersModule,
         ],
-        controllers: [],
+        controllers: [app_controller_1.AppController],
         providers: [posts_resolver_1.PostsResolver, posts_service_1.PostsService],
     })
 ], AppModule);

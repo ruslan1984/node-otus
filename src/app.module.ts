@@ -7,6 +7,7 @@ import { GraphQLModule } from "@nestjs/graphql";
 import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 import { PostsService } from "src/api/posts/posts.service";
 import { PostEntity } from "src/api/posts/post.entity";
+import { AppController } from "./app.controller";
 
 @Module({
   imports: [
@@ -31,7 +32,7 @@ import { PostEntity } from "src/api/posts/post.entity";
     AuthModule,
     UsersModule,
   ],
-  controllers: [],
+  controllers: [AppController],
   providers: [PostsResolver, PostsService],
 })
 export class AppModule {}
