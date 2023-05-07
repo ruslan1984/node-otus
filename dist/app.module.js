@@ -8,41 +8,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
-const typeorm_1 = require("@nestjs/typeorm");
-const auth_module_1 = require("./api/auth/auth.module");
-const users_module_1 = require("./api/users/users.module");
-const posts_resolver_1 = require("./api/posts/posts.resolver");
-const graphql_1 = require("@nestjs/graphql");
-const apollo_1 = require("@nestjs/apollo");
-const posts_service_1 = require("./api/posts/posts.service");
-const post_entity_1 = require("./api/posts/post.entity");
 const app_controller_1 = require("./app.controller");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [
-            typeorm_1.TypeOrmModule.forRoot({
-                type: "postgres",
-                host: "localhost",
-                port: 5432,
-                username: "",
-                password: "",
-                database: "otus",
-                entities: [post_entity_1.PostEntity],
-                synchronize: false,
-            }),
-            typeorm_1.TypeOrmModule.forFeature([post_entity_1.PostEntity]),
-            graphql_1.GraphQLModule.forRoot({
-                driver: apollo_1.ApolloDriver,
-                installSubscriptionHandlers: true,
-                autoSchemaFile: true,
-            }),
-            auth_module_1.AuthModule,
-            users_module_1.UsersModule,
-        ],
+        imports: [],
         controllers: [app_controller_1.AppController],
-        providers: [posts_resolver_1.PostsResolver, posts_service_1.PostsService],
+        providers: [],
     })
 ], AppModule);
 exports.AppModule = AppModule;
