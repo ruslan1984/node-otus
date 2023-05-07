@@ -18,6 +18,6 @@ describe('test', () => {
     return request(app.getHttpServer())
       .get('/')
       .expect(200)
-      .expect('Hello!');
+      .expect('Hello1!');
   });
 });
