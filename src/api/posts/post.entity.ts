@@ -15,4 +15,20 @@ export class PostEntity {
   @Column({ type: "character varying" })
   @Field({ nullable: true })
   text: string;
+
+  @Column({ type: "character varying" })
+  @Field({ nullable: true })
+  title: string;
+
+  @Column({ type: "character varying" })
+  @Field({ nullable: true })
+  meta_keywords: string;
+
+  @Column({ type: "character varying" })
+  @Field({ nullable: true })
+  meta_description: string;
+
+  @Column({ type: "character varying" })
+  @Field({ nullable: true })
+  type: string;
 }
