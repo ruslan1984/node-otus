@@ -2,7 +2,12 @@ import { Query, Resolver, Args, Mutation } from "@nestjs/graphql";
 import { UseGuards } from "@nestjs/common";
 import { PostEntity, PostListEntity } from "./post.entity";
 import { PostsService } from "./posts.service";
-import { UpdatePostInput, CreatePostInput, PaginateInput } from "./args";
+import {
+  UpdatePostInput,
+  CreatePostInput,
+  PaginateInput,
+  PostTypeInput,
+} from "./args";
 import { JwtAuthGuard } from "src/api/auth/jwt-auth.guard";
 
 @Resolver((of) => PostEntity)
@@ -10,8 +15,11 @@ export class PostsResolver {
   constructor(private readonly postsService: PostsService) {}
 
   @Query(() => PostListEntity, { name: "posts" })
-  async getPosts(@Args("paginateInput") paginateInput: PaginateInput) {
-    return this.postsService.getPosts(paginateInput);
+  getPosts(
+    @Args("paginateInput") paginateInput?: PaginateInput,
+    @Args("postTypeInput") postTypeInput?: PostTypeInput
+  ) {
+    return this.postsService.getPosts(paginateInput, postTypeInput);
   }
 
   @Query(() => PostEntity, { name: "post" })

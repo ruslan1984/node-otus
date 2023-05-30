@@ -15,10 +15,16 @@ export class GetPostArgs {
 }
 @InputType()
 export class PaginateInput {
+  @Field({ nullable: true })
+  length?: number;
+  @Field({ nullable: true })
+  page?: number;
+}
+
+@InputType()
+export class PostTypeInput {
   @Field()
-  length: number;
-  @Field()
-  page: number;
+  type?: "post" | "news" | "page";
 }
 
 @InputType()

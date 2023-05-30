@@ -2,7 +2,12 @@ import { Injectable } from "@nestjs/common";
 import { PostEntity } from "./post.entity";
 import { InjectRepository } from "@nestjs/typeorm";
 import { FindManyOptions, Repository } from "typeorm";
-import { UpdatePostInput, CreatePostInput, PaginateInput } from "./args";
+import {
+  UpdatePostInput,
+  CreatePostInput,
+  PaginateInput,
+  PostTypeInput,
+} from "./args";
 
 @Injectable()
 export class PostsService {
@@ -10,10 +15,23 @@ export class PostsService {
     @InjectRepository(PostEntity)
     private readonly postsRepository: Repository<PostEntity>
   ) {}
-  async getPosts(paginateInput: PaginateInput) {
-    const take = paginateInput.length;
-    const skip = (paginateInput.page - 1) * take;
+  async getPosts(paginateInput?: PaginateInput, postTypeInput?: PostTypeInput) {
+    let take = 0;
+    let skip = 3;
+    if (paginateInput?.length) {
+      take = paginateInput.length;
+    }
+    if (paginateInput?.page) {
+      skip = (paginateInput.page - 1) * take;
+    }
+    let type = "post";
+    if (postTypeInput.type) {
+      type = postTypeInput.type;
+    }
     const query: FindManyOptions<PostEntity> = {
+      where: {
+        type,
+      },
       order: {
         sort: "ASC",
       },
