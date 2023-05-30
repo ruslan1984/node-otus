@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreatePostInput = exports.UpdatePostInput = exports.GetPostArgs = exports.GetPostsArgs = void 0;
+exports.CreatePostInput = exports.UpdatePostInput = exports.PaginateInput = exports.GetPostArgs = exports.GetPostsArgs = void 0;
 const graphql_1 = require("@nestjs/graphql");
 const class_validator_1 = require("class-validator");
 let GetPostsArgs = class GetPostsArgs {
@@ -33,6 +33,20 @@ GetPostArgs = __decorate([
     (0, graphql_1.ArgsType)()
 ], GetPostArgs);
 exports.GetPostArgs = GetPostArgs;
+let PaginateInput = class PaginateInput {
+};
+__decorate([
+    (0, graphql_1.Field)(),
+    __metadata("design:type", Number)
+], PaginateInput.prototype, "length", void 0);
+__decorate([
+    (0, graphql_1.Field)(),
+    __metadata("design:type", Number)
+], PaginateInput.prototype, "page", void 0);
+PaginateInput = __decorate([
+    (0, graphql_1.InputType)()
+], PaginateInput);
+exports.PaginateInput = PaginateInput;
 let UpdatePostInput = class UpdatePostInput {
 };
 __decorate([
@@ -43,6 +57,26 @@ __decorate([
     (0, graphql_1.Field)({ nullable: true }),
     __metadata("design:type", String)
 ], UpdatePostInput.prototype, "text", void 0);
+__decorate([
+    (0, graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], UpdatePostInput.prototype, "title", void 0);
+__decorate([
+    (0, graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], UpdatePostInput.prototype, "meta_keywords", void 0);
+__decorate([
+    (0, graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], UpdatePostInput.prototype, "meta_description", void 0);
+__decorate([
+    (0, graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], UpdatePostInput.prototype, "type", void 0);
+__decorate([
+    (0, graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", Number)
+], UpdatePostInput.prototype, "sort", void 0);
 UpdatePostInput = __decorate([
     (0, graphql_1.InputType)()
 ], UpdatePostInput);
@@ -60,6 +94,22 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], CreatePostInput.prototype, "text", void 0);
+__decorate([
+    (0, graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], CreatePostInput.prototype, "title", void 0);
+__decorate([
+    (0, graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], CreatePostInput.prototype, "meta_keywords", void 0);
+__decorate([
+    (0, graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], CreatePostInput.prototype, "meta_description", void 0);
+__decorate([
+    (0, graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], CreatePostInput.prototype, "type", void 0);
 CreatePostInput = __decorate([
     (0, graphql_1.InputType)()
 ], CreatePostInput);

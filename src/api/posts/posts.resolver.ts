@@ -1,15 +1,17 @@
 import { Query, Resolver, Args, Mutation } from "@nestjs/graphql";
 import { UseGuards } from "@nestjs/common";
-import { PostEntity } from "./post.entity";
+import { PostEntity, PostListEntity } from "./post.entity";
 import { PostsService } from "./posts.service";
-import { UpdatePostInput, CreatePostInput } from "./args";
+import { UpdatePostInput, CreatePostInput, PaginateInput } from "./args";
 
 @Resolver((of) => PostEntity)
 export class PostsResolver {
   constructor(private readonly postsService: PostsService) {}
-  @Query(() => [PostEntity], { name: "posts" })
-  getPosts() {
-    return this.postsService.getPosts();
+  @Query(() => PostListEntity, { name: "posts" }) 
+  async getPosts(
+    @Args("paginateInput") paginateInput: PaginateInput
+  ) {
+    return this.postsService.getPosts(paginateInput);
   }
 
   @Query(() => PostEntity, { name: "post" })

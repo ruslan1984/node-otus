@@ -21,27 +21,42 @@ let PostsService = class PostsService {
     constructor(postsRepository) {
         this.postsRepository = postsRepository;
     }
-    async getPosts() {
+    async getPosts(paginateInput) {
+        const take = paginateInput.length;
+        const skip = (paginateInput.page - 1) * take;
         const query = {
-            select: {
-                name: true,
-                id: true,
-                text: true,
-            },
             order: {
-                name: "DESC",
+                sort: "ASC",
             },
+            take,
+            skip,
         };
-        return await this.postsRepository.find(query);
+        const data = await this.postsRepository.findAndCount(query);
+        return {
+            list: data[0],
+            count: Number(data[1]),
+        };
     }
     async getPost(id) {
         return await this.postsRepository.findOneBy({ id });
     }
     async update(id, post) {
+        post["updated_at"] = new Date()
+            .toISOString()
+            .replace(/T/, " ")
+            .replace(/\..+/, "");
         await this.postsRepository.update(id, post);
         return await this.postsRepository.findOneBy({ id });
     }
     async create(post) {
+        post["created_at"] = new Date()
+            .toISOString()
+            .replace(/T/, " ")
+            .replace(/\..+/, "");
+        post["updated_at"] = new Date()
+            .toISOString()
+            .replace(/T/, " ")
+            .replace(/\..+/, "");
         return await this.postsRepository.save(post);
     }
     async delete(id) {

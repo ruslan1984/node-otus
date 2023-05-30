@@ -6,7 +6,7 @@ import { PostsResolver } from "./api/posts/posts.resolver";
 import { GraphQLModule } from "@nestjs/graphql";
 import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 import { PostsService } from "src/api/posts/posts.service";
-import { PostEntity } from "src/api/posts/post.entity";
+import { PostEntity, PostListEntity } from "src/api/posts/post.entity";
 
 @Module({
   imports: [
@@ -17,11 +17,11 @@ import { PostEntity } from "src/api/posts/post.entity";
       username: "",
       password: "",
       database: "otus",
-      entities: [PostEntity],
+      entities: [PostEntity, PostListEntity],
       synchronize: false,
     }),
 
-    TypeOrmModule.forFeature([PostEntity]),
+    TypeOrmModule.forFeature([PostEntity, PostListEntity]),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       installSubscriptionHandlers: true,

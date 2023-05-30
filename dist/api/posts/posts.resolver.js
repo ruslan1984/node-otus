@@ -21,8 +21,8 @@ let PostsResolver = class PostsResolver {
     constructor(postsService) {
         this.postsService = postsService;
     }
-    getPosts() {
-        return this.postsService.getPosts();
+    async getPosts(paginateInput) {
+        return this.postsService.getPosts(paginateInput);
     }
     getPost(id) {
         return this.postsService.getPost(id);
@@ -38,10 +38,11 @@ let PostsResolver = class PostsResolver {
     }
 };
 __decorate([
-    (0, graphql_1.Query)(() => [post_entity_1.PostEntity], { name: "posts" }),
+    (0, graphql_1.Query)(() => post_entity_1.PostListEntity, { name: "posts" }),
+    __param(0, (0, graphql_1.Args)("paginateInput")),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:paramtypes", [args_1.PaginateInput]),
+    __metadata("design:returntype", Promise)
 ], PostsResolver.prototype, "getPosts", null);
 __decorate([
     (0, graphql_1.Query)(() => post_entity_1.PostEntity, { name: "post" }),

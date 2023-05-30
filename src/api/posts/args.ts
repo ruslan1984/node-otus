@@ -13,6 +13,13 @@ export class GetPostArgs {
   @Field()
   id: string;
 }
+@InputType()
+export class PaginateInput {
+  @Field()
+  length: number;
+  @Field()
+  page: number;
+}
 
 @InputType()
 export class UpdatePostInput {
@@ -21,6 +28,21 @@ export class UpdatePostInput {
 
   @Field({ nullable: true })
   text?: string;
+
+  @Field({ nullable: true })
+  title?: string;
+
+  @Field({ nullable: true })
+  meta_keywords?: string;
+
+  @Field({ nullable: true })
+  meta_description?: string;
+
+  @Field({ nullable: true })
+  type?: string;
+
+  @Field({ nullable: true })
+  sort?: number;
 }
 
 @InputType()
@@ -33,4 +55,16 @@ export class CreatePostInput {
   @Field({ nullable: true })
   @IsOptional()
   text?: string;
+
+  @Field({ nullable: true })
+  title?: string;
+
+  @Field({ nullable: true })
+  meta_keywords?: string;
+
+  @Field({ nullable: true })
+  meta_description?: string;
+
+  @Field({ nullable: true })
+  type?: string;
 }

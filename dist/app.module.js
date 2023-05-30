@@ -28,10 +28,10 @@ AppModule = __decorate([
                 username: "",
                 password: "",
                 database: "otus",
-                entities: [post_entity_1.PostEntity],
+                entities: [post_entity_1.PostEntity, post_entity_1.PostListEntity],
                 synchronize: false,
             }),
-            typeorm_1.TypeOrmModule.forFeature([post_entity_1.PostEntity]),
+            typeorm_1.TypeOrmModule.forFeature([post_entity_1.PostEntity, post_entity_1.PostListEntity]),
             graphql_1.GraphQLModule.forRoot({
                 driver: apollo_1.ApolloDriver,
                 installSubscriptionHandlers: true,
