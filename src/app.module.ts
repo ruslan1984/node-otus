@@ -7,6 +7,7 @@ import { GraphQLModule } from "@nestjs/graphql";
 import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 import { PostsService } from "src/api/posts/posts.service";
 import { PostEntity, PostListEntity } from "src/api/posts/post.entity";
+import { SchemaController } from "src/api/schema/schema.controller";
 
 @Module({
   imports: [
@@ -25,13 +26,14 @@ import { PostEntity, PostListEntity } from "src/api/posts/post.entity";
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       installSubscriptionHandlers: true,
-      autoSchemaFile: true,
+      // autoSchemaFile: true,
+      autoSchemaFile: "src/schema.gql",
     }),
 
     AuthModule,
     UsersModule,
   ],
-  controllers: [],
+  controllers: [SchemaController],
   providers: [PostsResolver, PostsService],
 })
 export class AppModule {}
