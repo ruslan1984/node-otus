@@ -9,6 +9,10 @@ import { PostsService } from "src/api/posts/posts.service";
 import { PostEntity, PostListEntity } from "src/api/posts/post.entity";
 import { SchemaController } from "src/api/schema/schema.controller";
 
+import { UsersResolver } from "src/api/users/users.resolver";
+import { UsersService } from "src/api/users/users.service";
+import { UserEntity } from "src/api/users/user.entity";
+
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -18,7 +22,7 @@ import { SchemaController } from "src/api/schema/schema.controller";
       username: "",
       password: "",
       database: "otus",
-      entities: [PostEntity, PostListEntity],
+      entities: [PostEntity, PostListEntity, UserEntity],
       synchronize: false,
     }),
 
