@@ -12,22 +12,6 @@ export class UsersService {
     @InjectRepository(UserEntity)
     private readonly usersRepository: Repository<UserEntity>
   ) {}
-  private readonly users = [
-    {
-      userId: 1,
-      username: "admin",
-      password: "123",
-    },
-    {
-      userId: 2,
-      username: "maria",
-      password: "guess",
-    },
-  ];
-
-  async findOne(username: string): Promise<User | undefined> {
-    return this.users.find((user) => user.username === username);
-  }
 
   async getUsers() {
     const query: FindManyOptions = {
