@@ -13,11 +13,17 @@
 ### Сущность User
 
 **id** - id поста (<ins>bigint</ins>)
+
 **login** - логин (<ins>character varying</ins>)
+
 **password** - пароль (<ins>character varying</ins>)
+
 **name** - имя (<ins>character varying</ins>)
+
 **surname** - фамилия (<ins>character varying</ins>)
+
 **created_at** - создан (<ins>timestamp with time zone</ins>)
+
 **updated_at** - обновлен (<ins>timestamp with time zone</ins>)
 
 #### API
@@ -37,7 +43,7 @@ query {
 }
 ```
 
-###Пользователь по id 'query user'
+### Пользователь по id 'query user'
 
 ```gql
 query {
@@ -52,7 +58,7 @@ query {
 }
 ```
 
-###Обновить пользователя 'mutation updateUser'
+### Обновить пользователя 'mutation updateUser'
 
 ```gql
 mutation {
@@ -62,7 +68,7 @@ mutation {
 }
 ```
 
-###Добавить пользователя 'mutation createUser'
+### Добавить пользователя 'mutation createUser'
 
 ```gql
 mutation {
@@ -79,8 +85,10 @@ mutation {
 }
 ```
 
-###Авторизация
-####Запрос:
+### Авторизация
+
+#### Запрос:
+
 POST **/auth/login**
 
 ```
@@ -90,7 +98,7 @@ POST **/auth/login**
 }
 ```
 
-####Ответ
+#### Ответ
 
 ```
 {
@@ -103,30 +111,42 @@ POST **/auth/login**
 ### Сущность Post
 
 **id** - id поста (<ins>bigint</ins>)
+
 **name** - имя поста (<ins>character varying</ins>)
+
 **text** - содержание поста (<ins>character varying</ins>)
+
 **title** - заголовок поста (<ins>character varying</ins>)
+
 **type** - тип поста (post|news|page) (<ins>character varying</ins>)
+
 **meta_keywords** - ключевые слова (<ins>character varying</ins>)
+
 **meta_description** - описание (<ins>character varying</ins>)
+
 **created_at** - создан (<ins>timestamp with time zone</ins>)
+
 **updated_at** - обновлен (<ins>timestamp with time zone</ins>)
 
-###API
-####Авторизацтя
+### API
+
+#### Авторизацтя
+
 headers:
 Authorization: ваш токен
 
-###Список постов 'query posts'
+### Список постов 'query posts'
 
-####Параметры
+#### Параметры
+
 **paginateInput**:
 {
 &nbsp;&nbsp;&nbsp;&nbsp;**page**: страница
 &nbsp;&nbsp;&nbsp;&nbsp;**length**: количество элементов на странице
 }
 
-###postTypeInput:
+### postTypeInput:
+
 {
 &nbsp;&nbsp;&nbsp;&nbsp;**type**: post|news|page
 }
@@ -154,9 +174,10 @@ query {
 }
 ```
 
-###Получить пост по ID 'query post'
+### Получить пост по ID 'query post'
 
-####Параметры
+#### Параметры
+
 **id**: идентификатор поста
 
 ```gql
@@ -173,9 +194,10 @@ query {
 }
 ```
 
-###Обновить пост 'mutation updatePost'
+### Обновить пост 'mutation updatePost'
 
-####Параметры
+#### Параметры
+
 **id** - идентификатор поста
 **updatePostInput** - данные для обновления
 
@@ -188,8 +210,10 @@ mutation {
 }
 ```
 
-###Обновить пост 'mutation createPost'
-####Параметры
+### Обновить пост 'mutation createPost'
+
+#### Параметры
+
 **createPostInput** данные для добавлеия
 
 ```gql
@@ -209,8 +233,10 @@ mutation {
 }
 ```
 
-###Удалить пост 'mutation deletePost'
-####Параметры
+### Удалить пост 'mutation deletePost'
+
+#### Параметры
+
 **id** - идентификатор поста
 
 ```gql
