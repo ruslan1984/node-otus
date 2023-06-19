@@ -155,6 +155,7 @@ Authorization: ваш токен
 &nbsp;&nbsp;&nbsp;&nbsp;**length**: количество элементов на странице
 
 }
+
 **postTypeInput**:
 {
 &nbsp;&nbsp;&nbsp;&nbsp;**type**: post|news|page
