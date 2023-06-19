@@ -149,8 +149,11 @@ Authorization: ваш токен
 
 **paginateInput**:
 {
+
 &nbsp;&nbsp;&nbsp;&nbsp;**page**: страница
+
 &nbsp;&nbsp;&nbsp;&nbsp;**length**: количество элементов на странице
+
 }
 **postTypeInput**:
 {
@@ -205,6 +208,7 @@ query {
 #### Параметры
 
 **id** - идентификатор поста
+
 **updatePostInput** - данные для обновления
 
 ```gql
@@ -220,7 +224,7 @@ mutation {
 
 #### Параметры
 
-**createPostInput** данные для добавлеия
+**createPostInput** данные для добавления
 
 ```gql
 mutation {
