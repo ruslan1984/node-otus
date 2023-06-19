@@ -26,9 +26,11 @@
 
 **updated_at** - обновлен (<ins>timestamp with time zone</ins>)
 
+---
+
 #### API
 
-###Список пользователей 'query users'
+### Список пользователей 'query users'
 
 ```gql
 query {
@@ -85,6 +87,8 @@ mutation {
 }
 ```
 
+---
+
 ### Авторизация
 
 #### Запрос:
@@ -128,9 +132,11 @@ POST **/auth/login**
 
 **updated_at** - обновлен (<ins>timestamp with time zone</ins>)
 
+---
+
 ### API
 
-#### Авторизацтя
+#### Верификация
 
 headers:
 Authorization: ваш токен
@@ -144,9 +150,7 @@ Authorization: ваш токен
 &nbsp;&nbsp;&nbsp;&nbsp;**page**: страница
 &nbsp;&nbsp;&nbsp;&nbsp;**length**: количество элементов на странице
 }
-
-### postTypeInput:
-
+**postTypeInput**:
 {
 &nbsp;&nbsp;&nbsp;&nbsp;**type**: post|news|page
 }
