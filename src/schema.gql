@@ -1,0 +1,90 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type UserEntity {
+  id: Int!
+  login: String
+  password: String
+  name: String
+  surname: String
+  created_at: String
+  updated_at: String
+}
+
+type PostEntity {
+  id: Int!
+  name: String
+  text: String
+  title: String
+  meta_keywords: String
+  meta_description: String
+  type: String
+  sort: Float
+  created_at: String
+  updated_at: String
+}
+
+type Query {
+  posts(paginateInput: PaginateInput!, postTypeInput: PostTypeInput!): PostListEntity!
+  post(id: Float!): PostEntity!
+  users: [UserEntity!]!
+  user(id: Float!): UserEntity!
+}
+
+type PostListEntity {
+  list: [PostEntity!]
+  count: Float
+}
+
+input PaginateInput {
+  length: Float
+  page: Float
+}
+
+input PostTypeInput {
+  type: String!
+}
+
+type Mutation {
+  updatePost(id: Float!, updatePostInput: UpdatePostInput!): PostEntity!
+  createPost(createPostInput: CreatePostInput!): PostEntity!
+  deletePost(id: Float!): PostEntity!
+  createUser(createUserInput: CreateUserInput!): UserEntity!
+  updateUser(id: Float!, updateUserInput: UpdateUserInput!): UserEntity!
+}
+
+input UpdatePostInput {
+  name: String
+  text: String
+  title: String
+  meta_keywords: String
+  meta_description: String
+  type: String
+  sort: Float
+}
+
+input CreatePostInput {
+  name: String!
+  text: String
+  title: String
+  meta_keywords: String
+  meta_description: String
+  type: String
+}
+
+input CreateUserInput {
+  login: String
+  password: String
+  name: String
+  surname: String
+  created_at: String
+  updated_at: String
+}
+
+input UpdateUserInput {
+  login: String
+  password: String
+  name: String
+  surname: String
+}
