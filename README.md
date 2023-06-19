@@ -141,6 +141,8 @@ POST **/auth/login**
 headers:
 Authorization: ваш токен
 
+---
+
 ### Список постов 'query posts'
 
 #### Параметры
